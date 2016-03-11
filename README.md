@@ -1,7 +1,8 @@
 # Web Sockets
 
 1. [Introduction to Web Sockets](intro.md)
-2. [Set Up your Sockets](setUp.md)
+2. [Set Up your Sockets - NOT using express generator](noGenerator.md)
+3. [Set Up your Sockets - Using express generator](generator.md)
 3. [Socket Terminology and Use](usingSockets.md)
 4. [Build a Chat](chatRoom.md)
 5. Stretch: [Auth with Sockets](authentication.md)

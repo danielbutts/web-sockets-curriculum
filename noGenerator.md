@@ -1,5 +1,5 @@
 # Set Up
-These instructions go through how to set up your sockets either using an express generator or not using the express generator!
+These instructions go through how to set up your sockets when not using the express generator!
 
 ### Not using the Express Generator
 In the command line:
@@ -124,63 +124,5 @@ That's it! How can I check if my socket exists? Where should I see my console.lo
 **Google It!**
 
 If you did things correctly, we should see 'We are entering the chat room' logged out on the server side, and if we go under chrome web tools -> Network -> WS and refresh our browser, we should see a web socket!
-
-__You're Fully Set Up Now!__
-
-*************
-
-### If you use the Express App Generator
-Generate your app!
-```
-express --git socket-chat
-cd socket-chat
-npm install
-echo node_modules > .gitignore
-```
-Now we need to hook up our socket middleware. Because we're using the generator our socket code needs to go in our bin -> www folder right after we create our http server. So we can type in something like this...
-
-```js
-// this first line should already be there
-var server = http.createServer(app);
-// This is talking about the socket.js file you're about to make
-var Socket = require('../io');
-Socket(server);
-```
-
-**Question:** Why did we have to hook up our socket in our www file instead of our app.js?
-
-*The bin file is where the generator runs the http server, that is what you need access to in order to fire your sockets, otherwise in app.js you only have access to your app.*
-
-Now create a io.js file that lives in your lib file , add this code...
-```js
-var Socket = require('socket.io');
-module.exports=function(server){
-  var io = Socket(server)
-  io.on('connection', function(socket){
-    console.log('Now entering the chat room');
-  })
-}
-```
-**Question:** What is happening here?
-
-There we are actually setting up our socket! We require socket.io and set up our socket connection (io.on!)
-
-Now that the server side of our socket is set up, let's work on the client side!
-
-In your views folder, in layout.jade, go ahead and add your socket CDN and a connection to your main.js (in your public javascripts folder)
-
-```html
-body
-  block content
-  script(src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.js')
-  script(src='/javascripts/main.js')
-```
-
-And now finally let's fire the socket function and get it running. In your main.js add
-```js
-var socket = io();
-```
-
-Start your nodemon, open your web tools and make sure your socket is there!
 
 __You're Fully Set Up Now!__
